@@ -1,7 +1,7 @@
 {
   "name": "your-husband-bot",
   "version": "1.0.0",
-  "description": "WhatsApp Bot Customized for RABBI",
+  "description": "WhatsApp Bot Customized RABBI",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
