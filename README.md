@@ -1,4 +1,4 @@
-# 🤖 YOUR HUSBEND Bot
+ # 🤖 YOUR HUSBEND Bot
 
 This is a WhatsApp bot built using the Baileys library for group management, including features like tagging all members, muting/unmuting, and many more. It's designed to help admins efficiently manage WhatsApp groups.
 
@@ -15,10 +15,10 @@ This is a WhatsApp bot built using the Baileys library for group management, inc
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/github/followers/YOURHUSBEND?style=for-the-badge&label=Followers" alt="Followers"/>
-  <img src="https://img.shields.io/github/stars/YOURHUSBEND/YOURHUSBEND-Bot-MD?style=for-the-badge&label=Stars" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/YOURHUSBEND/YOURHUSBEND-Bot-MD?style=for-the-badge&label=Forks" alt="Forks"/>
-  <img src="https://img.shields.io/github/watchers/YOURHUSBEND/YOURHUSBEND-Bot-MD?style=for-the-badge&label=Watchers" alt="Watchers"/>
+  <img src="https://img.shields.io/github/followers/Mdrabbi2w3?style=for-the-badge&label=Followers" alt="Followers"/>
+  <img src="https://img.shields.io/github/stars/Mdrabbi2w3/YOUR-HUSBAND-BOT?style=for-the-badge&label=Stars" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/Mdrabbi2w3/YOUR-HUSBAND-BOT?style=for-the-badge&label=Forks" alt="Forks"/>
+  <img src="https://img.shields.io/github/watchers/Mdrabbi2w3/YOUR-HUSBAND-BOT?style=for-the-badge&label=Watchers" alt="Watchers"/>
 </div>
 
 ---
@@ -30,7 +30,7 @@ This is a WhatsApp bot built using the Baileys library for group management, inc
 Click the button below to fork the YOUR HUSBEND Bot repository to your GitHub account:
 
 <div align="center">
-  <a href="https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD/fork">
+  <a href="https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT/fork">
     <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork the repository"/>
   </a>
 </div>
@@ -77,8 +77,8 @@ It is lightweight and can be easily customized to add more commands as per your 
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD.git](https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD.git)
-    cd YOURHUSBEND-Bot-MD
+    git clone [https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT.git](https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT.git)
+    cd YOUR-HUSBAND-BOT
     ```
 
 2. **Install the dependencies:**
@@ -101,24 +101,24 @@ It is lightweight and can be easily customized to add more commands as per your 
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD/blob/main/LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT/blob/main/LICENSE) file for details.
 
 ---
 
 ## 🙌 Contributions
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT/issues).
 
 ---
 
 ## 🌟 Show your support
 
-If you like this project, please give it a [⭐️ star on GitHub](https://github.com/YOURHUSBEND/YOURHUSBEND-Bot-MD)!
+If you like this project, please give it a [⭐️ star on GitHub](https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT)!
 
 
 ## Credits
 
-- [YOUR HUSBEND](https://github.com/YOURHUSBEND)
+- [YOUR HUSBEND](https://github.com/Mdrabbi2w3)
 - [Baileys](https://github.com/adiwajshing/Baileys)
 
 ---
