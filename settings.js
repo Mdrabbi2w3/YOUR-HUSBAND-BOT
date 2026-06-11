@@ -1,7 +1,7 @@
 const settings = {
   packname: 'YOUR HUSBAND ',
   author: 'RABBI',
-  botName: "YOUR HUSBAND BOT",
+  botName: "YOUR HUSBAND_BOT",
   botOwner: 'RABBI',
   botOwnerNumber: '8801761554035', // Bot Owner Name er niche number property add kora hoyeche
   ownerNumber: '8801761554035', 
