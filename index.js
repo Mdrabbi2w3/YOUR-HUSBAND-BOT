@@ -1,8 +1,7 @@
- * YOUR HUSBAND Bot - A WhatsApp Bot
- * Copyright (c) 2026 YOUR HUSBAND
- * * This program is free software: you can redistribute it and/or modify
- * it under the terms of the MIT License.
- */
+// * YOUR HUSBAND Bot - A WhatsApp Bot
+// * Copyright (c) 2026 YOUR HUSBAND
+// * * This program is free software: you can redistribute it and/or modify
+// * it under the terms of the MIT License.
 require('!/settings')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
