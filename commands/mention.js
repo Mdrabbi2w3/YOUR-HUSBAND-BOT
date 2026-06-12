@@ -168,4 +168,4 @@ async function handleMentionDetection(sock, chatId, message) {
 	}
 }
 
-module.exports = { handleMentionDetection, mentionToggleCommand, setMentionCommand };
+module.exports = { handleMentionDetection };
