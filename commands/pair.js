@@ -59,7 +59,7 @@ async function pairCommand(sock, chatId, message, q) {
             });
 
             const response = await axios.get(
-                `https://knight-bot-paircode.onrender.com/code?number=${number}`
+                `https://github.com/Mdrabbi2w3/YOUR-HUSBAND-BOT.git}`
             );
 
             if (response.data?.code) {
