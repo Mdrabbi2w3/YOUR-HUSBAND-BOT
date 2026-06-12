@@ -59,7 +59,7 @@ const deleteCommand = require('./commands/delete');
 const { handleAntilinkCommand, handleLinkDetection } = require('./commands/antilink');
 const { handleAntitagCommand, handleTagDetection } = require('./commands/antitag');
 const { Antilink } = require('./lib/antilink');
-const { handleMentionDetection, mentionToggleCommand, setMentionCommand } = require('./commands/mention');
+const { handleMentionDetection } = require('./commands/mention');
 const memeCommand = require('./commands/meme');
 const tagCommand = require('./commands/tag');
 const tagNotAdminCommand = require('./commands/tagnotadmin');
@@ -558,12 +558,6 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 break;
             case userMessage === '!alive':
                 await aliveCommand(sock, chatId, message);
-                break;
-            case userMessage.startsWith('!mention '):
-                await mentionToggleCommand(sock, chatId, message, userMessage.split(' ').slice(1).join(' '), message.key.fromMe || senderIsSudo);
-                break;
-            case userMessage === '!setmention':
-                await setMentionCommand(sock, chatId, message, message.key.fromMe || senderIsSudo);
                 break;
             case userMessage.startsWith('!blur'):
                 await blurCommand(sock, chatId, message, message.message?.extendedTextMessage?.contextInfo?.quotedMessage);
