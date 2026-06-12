@@ -1,4 +1,4 @@
-// * YOUR HUSBAND BOT - Main Configuration Profile Settings
+// YOUR HUSBAND BOT - Main Configuration Profile Settings
  * Copyright (c) 2026 Professor
  * * This program is free software: you can redistribute it and/or modify
  * it under the terms of the MIT License.
