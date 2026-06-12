@@ -1,0 +1,81 @@
+const words = ['javascript', 'bot', 'hangman', 'whatsapp', 'nodejs'];
+
+let hangmanGames = {};
+
+function startHangman(sock, chatId) {
+    const word = words[Math.floor(Math.random() * words.length)];
+
+    const maskedWord = Array(word.length).fill('_');
+
+    hangmanGames[chatId] = {
+        word,
+        maskedWord,
+        guessedLetters: [],
+        wrongGuesses: 0,
+        maxWrongGuesses: 6,
+    };
+
+    sock.sendMessage(chatId, {
+        text: `🎮 Hangman started!\n\nWord: ${maskedWord.join(' ')}`
+    });
+}
+
+function guessLetter(sock, chatId, letter) {
+    if (!hangmanGames[chatId]) {
+        sock.sendMessage(chatId, {
+            text: '❌ No game in progress. Start with .hangman'
+        });
+        return;
+    }
+
+    const game = hangmanGames[chatId];
+    const { word } = game;
+
+    letter = letter.toLowerCase();
+
+    if (game.guessedLetters.includes(letter)) {
+        sock.sendMessage(chatId, {
+            text: `⚠️ You already guessed "${letter}". Try another letter.`
+        });
+        return;
+    }
+
+    game.guessedLetters.push(letter);
+
+    if (word.includes(letter)) {
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === letter) {
+                game.maskedWord[i] = letter;
+            }
+        }
+
+        sock.sendMessage(chatId, {
+            text: `✅ Good guess!\n\n${game.maskedWord.join(' ')}`
+        });
+
+        if (!game.maskedWord.includes('_')) {
+            sock.sendMessage(chatId, {
+                text: `🎉 Congratulations! You guessed the word: *${word}*`
+            });
+            delete hangmanGames[chatId];
+        }
+
+    } else {
+        game.wrongGuesses += 1;
+
+        const left = game.maxWrongGuesses - game.wrongGuesses;
+
+        sock.sendMessage(chatId, {
+            text: `❌ Wrong guess!\nTries left: ${left}`
+        });
+
+        if (game.wrongGuesses >= game.maxWrongGuesses) {
+            sock.sendMessage(chatId, {
+                text: `💀 Game over!\nThe word was: *${word}*`
+            });
+            delete hangmanGames[chatId];
+        }
+    }
+}
+
+module.exports = { startHangman, guessLetter };
