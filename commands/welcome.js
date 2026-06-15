@@ -1,7 +1,19 @@
 const { handleWelcome } = require('../lib/welcome');
 const { isWelcomeOn, getWelcome } = require('../lib/index');
-const { channelInfo } = require('../lib/messageConfig');
 const fetch = require('node-fetch');
+
+// Channel info context configuration inside fallback handling
+const channelInfo = {
+    contextInfo: {
+        forwardingScore: 1,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363161513685998@newsletter',
+            newsletterName: 'YOUR HUSBAND',
+            serverMessageId: -1
+        }
+    }
+};
 
 async function welcomeCommand(sock, chatId, message, match) {
     // Check if it's a group
@@ -88,7 +100,8 @@ async function handleJoinEvent(sock, id, participants) {
                 
                 const response = await fetch(apiUrl);
                 if (response.ok) {
-                    const imageBuffer = await response.buffer();
+                    const arrayBuffer = await response.arrayBuffer();
+                    const imageBuffer = Buffer.from(arrayBuffer);
                     
                     await sock.sendMessage(id, {
                         image: imageBuffer,
