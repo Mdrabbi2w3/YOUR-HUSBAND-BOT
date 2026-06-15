@@ -59,7 +59,7 @@ const deleteCommand = require('./commands/delete');
 const { handleAntilinkCommand, handleLinkDetection } = require('./commands/antilink');
 const { handleAntitagCommand, handleTagDetection } = require('./commands/antitag');
 const { Antilink } = require('./lib/antilink');
-const { handleMentionDetection } = require('./commands/mention');
+const { handleMentionDetection = () => {} } = require('./commands/mention') || {};
 const memeCommand = require('./commands/meme');
 const tagCommand = require('./commands/tag');
 const tagNotAdminCommand = require('./commands/tagnotadmin');
@@ -102,7 +102,7 @@ const unbanCommand = require('./commands/unban');
 const emojimixCommand = require('./commands/emojimix');
 const viewOnceCommand = require('./commands/viewonce');
 const clearSessionCommand = require('./commands/clearsession');
-const { autoStatusCommand, handleStatusUpdate } = require('./commands/autostatus');
+const { autoStatusCommand } = require('./commands/autostatus');
 const { simpCommand } = require('./commands/simp');
 const { stupidCommand } = require('./commands/stupid');
 const stickerTelegramCommand = require('./commands/stickertelegram');
@@ -136,8 +136,8 @@ const updateCommand = require('./commands/update');
 const removebgCommand = require('./commands/removebg');
 const { reminiCommand } = require('./commands/remini');
 const { igsCommand } = require('./commands/igs');
-const { anticallCommand, readState: readAnticallState } = require('./commands/anticall');
-const { pmblockerCommand, readState: readPmBlockerState } = require('./commands/pmblocker');
+const { anticallCommand } = require('./commands/anticall');
+const { pmblockerCommand } = require('./commands/pmblocker');
 const settingsCommand = require('./commands/settings');
 const soraCommand = require('./commands/sora');
 
@@ -168,6 +168,7 @@ async function groupJidCommand(sock, chatId, message) {
 }
 
 async function handleMessages(sock, messageUpdate, printLog) {
+    let chatId;
     try {
         const { messages, type } = messageUpdate;
         if (type !== 'notify') return;
@@ -186,7 +187,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
             return;
         }
 
-        const chatId = message.key.remoteJid;
+        chatId = message.key.remoteJid;
         const senderId = message.key.participant || message.key.remoteJid;
         const isGroup = chatId.endsWith('@g.us');
         const senderIsSudo = await isSudo(senderId);
@@ -258,6 +259,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
 
         if (!isGroup && !message.key.fromMe && !senderIsSudo) {
             try {
+                const { readState: readPmBlockerState } = require('./commands/pmblocker');
                 const pmState = readPmBlockerState();
                 if (pmState.enabled) {
                     await sock.sendMessage(chatId, { text: pmState.message || 'Private messages are blocked. Please contact RABBI in groups only.' });
@@ -488,7 +490,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 await quoteCommand(sock, chatId, message);
                 break;
             case userMessage === '!fact':
-                await factCommand(sock, chatId, message, message);
+                await factCommand(sock, chatId, message);
                 break;
             case userMessage.startsWith('!weather'):
                 const city = userMessage.slice(9).trim();
@@ -673,6 +675,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 await clearSessionCommand(sock, chatId, message);
                 break;
             case userMessage.startsWith('!autostatus'):
+                const { autoStatusCommand } = require('./commands/autostatus');
                 await autoStatusCommand(sock, chatId, message, userMessage.split(' ').slice(1));
                 break;
             case userMessage.startsWith('!metallic'):
@@ -816,7 +819,6 @@ async function handleMessages(sock, messageUpdate, printLog) {
             case userMessage.startsWith('!facepalm'):
             case userMessage.startsWith('!face-palm'):
             case userMessage.startsWith('!animuquote'):
-            case userMessage.startsWith('!quote'):
             case userMessage.startsWith('!loli'):
                 let subAnimu = userMessage.trim().split(/\s+/)[0].slice(1);
                 if (subAnimu === 'facepalm') subAnimu = 'face-palm';
