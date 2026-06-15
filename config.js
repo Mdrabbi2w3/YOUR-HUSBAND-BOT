@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 // Bot Owner Configurations
-global.ownerName = 'YOUR HUSBEND';
-global.botName = 'YOUR HUSBEND Bot';
+global.ownerName = 'YOUR HUSBAND';
+global.botName = 'YOUR HUSBAND Bot';
 global.channelLink = 'https://whatsapp.com/channel/0029VbBl3d4C6Zvq92k5Oy24';
 
 global.APIs = {
@@ -30,7 +30,8 @@ global.APIKeys = {
 
 module.exports = {
     WARN_COUNT: 3,
-    botName: global.YOUR HUSBAND ,
-    ownerName: global.RABBI,
-    channelLink: global.https://whatsapp.com/channel/0029VbBl3d4C6Zvq92k5Oy24,    APIs: global.APIs,
+    botName: global.botName,'YOUR HUSBAND',
+    ownerName: global.ownerName,'YOUR RABBI',
+    channelLink: global.channelLink,'https://whatsapp.com/channel/0029VbBl3d4C6Zvq92k5Oy24',
+    APIs: global.APIs,
 };
