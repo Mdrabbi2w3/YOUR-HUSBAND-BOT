@@ -50,7 +50,7 @@ setInterval(() => store.writeToFile(), settings.storeWriteInterval || 10000)
 setInterval(() => {
     if (global.gc) {
         global.gc()
-        console.log('🧹 Garbage collection completed')
+        console.log('包装 Garbage collection completed')
     }
 }, 60_000)
 
@@ -64,7 +64,12 @@ setInterval(() => {
 }, 30_000)
 
 let phoneNumber = "911234567890"
-let owner = JSON.parse(fs.readFileSync('./data/owner.json'))
+let owner = []
+try {
+    owner = JSON.parse(fs.readFileSync('./data/owner.json'))
+} catch (e) {
+    console.log("Owner file not found or invalid JSON, using default.")
+}
 
 global.botname = "YOUR HUSBAND"
 global.themeemoji = "•"
@@ -172,7 +177,7 @@ async function startYOURHUSBANDBot() {
         })
 
         XeonBotInc.getName = (jid, withoutContact = false) => {
-            id = XeonBotInc.decodeJid(jid)
+            let id = XeonBotInc.decodeJid(jid)
             withoutContact = XeonBotInc.withoutContact || withoutContact
             let v
             if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
@@ -196,24 +201,24 @@ async function startYOURHUSBANDBot() {
         if (pairingCode && !XeonBotInc.authState.creds.registered) {
             if (useMobile) throw new Error('Cannot use pairing code with mobile api')
 
-            let phoneNumber
+            let pNum
             if (!!global.phoneNumber) {
-                phoneNumber = global.phoneNumber
+                pNum = global.phoneNumber
             } else {
-                phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFormat: 88017xxxxxxxx (without + or spaces) : `)))
+                pNum = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFormat: 88017xxxxxxxx (without + or spaces) : `)))
             }
 
-            phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
+            pNum = pNum.replace(/[^0-9]/g, '')
 
             const pn = require('awesome-phonenumber');
-            if (!pn('+' + phoneNumber).isValid()) {
+            if (!pn('+' + pNum).isValid()) {
                 console.log(chalk.red('Invalid phone number. Please enter your full international number.'));
                 process.exit(1);
             }
 
             setTimeout(async () => {
                 try {
-                    let code = await XeonBotInc.requestPairingCode(phoneNumber)
+                    let code = await XeonBotInc.requestPairingCode(pNum)
                     code = code?.match(/.{1,4}/g)?.join("-") || code
                     console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
                     console.log(chalk.yellow(`\nPlease enter this code in your WhatsApp app:\n1. Open WhatsApp\n2. Go to Settings > Linked Devices\n3. Tap "Link a Device"\n4. Enter the code shown above`))
@@ -321,12 +326,6 @@ async function startYOURHUSBANDBot() {
 
         XeonBotInc.ev.on('group-participants.update', async (update) => {
             await handleGroupParticipantUpdate(XeonBotInc, update);
-        });
-
-        XeonBotInc.ev.on('messages.upsert', async (m) => {
-            if (m.messages[0].key && m.messages[0].key.remoteJid === 'status@broadcast') {
-                await handleStatus(XeonBotInc, m);
-            }
         });
 
         XeonBotInc.ev.on('status.update', async (status) => {
